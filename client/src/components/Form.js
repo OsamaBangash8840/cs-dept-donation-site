@@ -50,7 +50,7 @@ const Form = () => {
             <input type="password" name="password" id="password" placeholder="***" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800" 
             value={password} onChange={(e)=>setPassword(e.target.value)}
             />
-            <a to="#" className="text-xs lg:mr-64 dark:text-black hover:underline">Forgot password?</a>
+            <Link to="#" className="text-xs lg:mr-64 dark:text-black hover:underline">Forgot password?</Link>
           </div>
         </div>
         <div className="space-y-2">
