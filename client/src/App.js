@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Card from "./components/heroSection/Card";
+import Card from "./components/heroSection/card";
 import VideoPortion from "./components/heroSection/VideoPortion";
 import About from "./components/heroSection/About";
 import WhatWeDo from "./components/heroSection/WhatWeDo";
