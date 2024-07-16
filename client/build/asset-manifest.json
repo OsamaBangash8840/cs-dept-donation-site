@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.7f24ba09.css",
-    "main.js": "/static/js/main.ab884ae7.js",
+    "main.js": "/static/js/main.53b6ea6a.js",
     "static/js/453.419a5d54.chunk.js": "/static/js/453.419a5d54.chunk.js",
     "static/media/donationvideo.mp4": "/static/media/donationvideo.2df7c6ec18bb275b0ea9.mp4",
     "static/media/islamiaImg.jpeg": "/static/media/islamiaImg.ae0071050f1b377b798a.jpeg",
@@ -15,11 +15,11 @@
     "static/media/images4.jpg": "/static/media/images4.49c49dab7fb506647fea.jpg",
     "index.html": "/index.html",
     "main.7f24ba09.css.map": "/static/css/main.7f24ba09.css.map",
-    "main.ab884ae7.js.map": "/static/js/main.ab884ae7.js.map",
+    "main.53b6ea6a.js.map": "/static/js/main.53b6ea6a.js.map",
     "453.419a5d54.chunk.js.map": "/static/js/453.419a5d54.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7f24ba09.css",
-    "static/js/main.ab884ae7.js"
+    "static/js/main.53b6ea6a.js"
   ]
 }
