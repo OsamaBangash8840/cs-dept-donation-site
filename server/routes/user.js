@@ -153,5 +153,9 @@ router.post('/reset-password/:token', async (req, res) => {
     }
 });
 
+router.get('/get',(req,res)=>{
+    res.send('get route')
+})
+
 module.exports = router;
 
