@@ -12,7 +12,7 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://donation-site-three.vercel.app/api/register", {
+    axios.post("https://cs-dept-donation-site.vercel.app/api/register", {
       name,
       email,
       password
