@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ForgotPas from '../components/assest/forget2.png';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
+  const [message,setMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Your submit logic here
+    try {
+      const response = await axios.post('https://donation-site-three.vercel.app/api/forget-password',{email})
+      setMessage(response.data);
+    } catch (error) {
+      setMessage('Error Sending an email');
+      toast.error('No Email Found')
+    }
   };
 
   return (
@@ -32,6 +41,7 @@ const ForgotPassword = () => {
           </div>
           <button type="submit" className="w-full bg-green-500 text-white p-2 rounded">Submit</button>
         </form>
+        {message && <p>{message}</p>}
         <Link to="/form" className="block mt-4 text-center text-blue-500">Back to Login</Link>
       </div>
     </div>

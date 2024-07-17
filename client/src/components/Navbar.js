@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import { Link as RouterLink } from 'react-router-dom';
 import DonateBtn from './DonateBtn';
+import { TokenProvider } from './context/TokenSecret';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,12 +61,14 @@ const Navbar = () => {
         <Link smooth to="/#contact" className="py-2 md:py-0 text-lg hover:bg-yellow-400 rounded hover:p-1 cursor-pointer" onClick={closeMenu}>
           Contact Us
         </Link>
-        <RouterLink to="/form" className="py-2 md:py-0 text-lg hover:bg-yellow-400 rounded hover:p-1 cursor-pointer" onClick={closeMenu}>
+        <RouterLink to="/login" className="py-2 md:py-0 text-lg hover:bg-yellow-400 rounded hover:p-1 cursor-pointer" onClick={closeMenu}>
           Login
         </RouterLink>
       
       </div>
+      <TokenProvider>
       <DonateBtn />
+      </TokenProvider>
     </nav>
   );
 };

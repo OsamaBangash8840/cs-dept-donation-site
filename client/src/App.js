@@ -65,7 +65,7 @@ const App = () => {
           </div>
         } />
         <Route path="/blogs/:id" element={<BlogDetail blogs={blogs} />} />
-        <Route path="/form" element={<Form />} />
+        <Route path="/login" element={<Form />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/resetpass" element={<ResetPassword />} />
