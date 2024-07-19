@@ -11,7 +11,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://donation-site-three.vercel.app/api/forget-password',{email})
+      const response = await axios.post('http://donation-site-three.vercel.app/api/forget-password',{email})
       setMessage(response.data);
     } catch (error) {
       setMessage('Error Sending an email');
@@ -42,7 +42,7 @@ const ForgotPassword = () => {
           <button type="submit" className="w-full bg-green-500 text-white p-2 rounded">Submit</button>
         </form>
         {message && <p>{message}</p>}
-        <Link to="/form" className="block mt-4 text-center text-blue-500">Back to Login</Link>
+        <Link to="/login" className="block mt-4 text-center text-blue-500">Back to Login</Link>
       </div>
     </div>
   );

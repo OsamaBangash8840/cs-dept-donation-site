@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -10,26 +10,25 @@ const SignUp = () => {
 
   const navigate = useNavigate(); // Corrected to use navigate as a function
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post("http://donation-site-three.vercel.app/api/register", {
+    try {
+      const res = await axios.post("http://donation-site-three.vercel.app/api/register", {
         name,
         email,
         password,
-      })
-      .then((res) => {
-        if (res.data && res.data.email) {
-          toast.success(`User ${res.data.email} is successfully registered`);
-          navigate("/form");
-        } else {
-          toast.error("Unexpected request response");
-        }
-      })
-      .catch((err) => {
-        console.error("Error:", err);
-        toast.error("Registration failed. Please try again.");
       });
+
+      if (res.data && res.data.email) {
+        toast.success(`User ${res.data.email} is successfully registered`);
+        navigate("/login");
+      } else {
+        toast.error("Unexpected request response");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      toast.error("Registration failed. Please try again.");
+    }
   };
 
   return (

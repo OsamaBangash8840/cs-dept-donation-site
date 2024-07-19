@@ -113,7 +113,7 @@ const App = () => {
         <Route path="/login" element={<Form />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/resetpass" element={<ResetPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
       <Footer />
     </Router>
