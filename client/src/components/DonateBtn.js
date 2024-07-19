@@ -14,9 +14,6 @@ const DonateBtn = () => {
       navigate("/login");
       return;
     }
-
-    // Proceed with donation process using the third-party payment service
-    // Example: thirdPartyPaymentService.processDonation(token);
   };
 
   return (

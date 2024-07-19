@@ -2,6 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import ContactImg from '../assest/contact.png';
+import axios from 'axios';
 
 const Contact = () => {
   const formik = useFormik({
@@ -19,9 +20,22 @@ const Contact = () => {
         .required('Mobile number is required'),
       message: Yup.string().required('Message is required')
     }),
-    onSubmit: (values) => {
-      console.log(values);
-      // Handle form submission
+    onSubmit: async (values, { setSubmitting, setErrors }) => {
+      try {
+        const response = await axios.post('https://donation-site-three.vercel.app/api/submit', values);
+        console.log(response.data);
+        alert('Form submitted successfully');
+      } catch (error) {
+        if (error.response && error.response.data.errors) {
+          const validationErrors = {};
+          error.response.data.errors.forEach(err => {
+            validationErrors[err.param] = err.msg;
+          });
+          setErrors(validationErrors);
+        }
+      } finally {
+        setSubmitting(false);
+      }
     }
   });
 

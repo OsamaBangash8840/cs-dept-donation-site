@@ -1,91 +1,60 @@
-import React from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import ContactImg from '../components/assest/contact.png';
+// ResetPassword.js
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const Contact = () => {
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      mobile: '',
-      message: ''
-    },
-    validationSchema: Yup.object({
-      name: Yup.string().required('Full name is required'),
-      email: Yup.string().email('Invalid email address').required('Email is required'),
-      mobile: Yup.string()
-        .matches(/^[0-9]{11}$/, 'Invalid mobile number')
-        .required('Mobile number is required'),
-      message: Yup.string().required('Message is required')
-    }),
-    onSubmit: async (values, { setSubmitting, setErrors }) => {
-      try {
-        const response = await axios.post('https://donation-site-three.vercel.app/api/submit', values);
-        console.log(response.data);
-        alert('Form submitted successfully');
-      } catch (error) {
-        if (error.response && error.response.data.errors) {
-          const validationErrors = {};
-          error.response.data.errors.forEach(err => {
-            validationErrors[err.param] = err.msg;
-          });
-          setErrors(validationErrors);
-        }
-      } finally {
-        setSubmitting(false);
-      }
+const ResetPassword = () => {
+  const { token } = useParams();
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(`https://donation-site-three.vercel.app/reset-password/${token}`, { password });
+      setMessage(res.data);
+    } catch (err) {
+      setMessage(err.response ? err.response.data : 'Error in resetting password');
     }
-  });
+  };
+
 
   return (
-    <section id='contact' className='w-[90%] m-auto flex lg:flex-row flex-col justify-between items-center gap-28 py-20'>
-      <div className='lg:w-[50%] w-full'>
-        <img data-aos='zoom-in' data-aos-delay='200' src={ContactImg} alt='contact' />
-      </div>
-      <div data-aos='zoom-in' data-aos-delay='400' className='lg:w-[50%] w-full flex flex-col justify-center items-start gap-8 bg-black lg:p-16 p-8  rounded-3xl ml-7'>
-        <h1 className='text-white text-[45px] font-semibold font-ubuntu'>Let's Contact Us</h1>
-        <form id='form-box' className='w-full bg-transparent flex flex-col justify-center items-center gap-4' onSubmit={formik.handleSubmit}>
-          <input 
-            type='text' 
-            className={`w-full text-white bg-slate-900 px-6 py-4 rounded-lg border-none font-ubuntu ${formik.touched.name && formik.errors.name ? 'border-red-500' : ''}`} 
-            placeholder='Enter your full name here' 
-            {...formik.getFieldProps('name')}
-          />
-          {formik.touched.name && formik.errors.name ? <div className="text-red-500">{formik.errors.name}</div> : null}
-
-          <div className='w-full flex justify-center items-start gap-4'>
-            <input 
-              type='email' 
-              placeholder='Enter your email'
-              className={` w-full text-white bg-slate-900 px-6 py-4 rounded-lg border-none font-sans ${formik.touched.email && formik.errors.email ? 'border-red-500 mb-10' : ''}`}
-              {...formik.getFieldProps('email')}
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded shadow-lg w-full max-w-sm">
+        <div className="flex flex-col items-center mb-4">
+        <svg
+    className="w-12 h-12 text-red-500 mb-2"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M12 2C9.24 2 7 4.24 7 7v5H5v10h14V12h-2V7c0-2.76-2.24-5-5-5zm3 10v7H9v-7h6zm-3-9c1.66 0 3 1.34 3 3v5H9V7c0-1.66 1.34-3 3-3z" />
+  </svg>
+          <h2 className="text-2xl font-bold mb-2">Reset Password</h2>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-600">
+              New Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="w-full p-2 border border-gray-300 rounded"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
-            {formik.touched.email && formik.errors.email ? <div className="text-red-500">{formik.errors.email}</div> : null}
-
-            <input 
-              type='text' 
-              placeholder='Enter your mobile number here'
-              className={`w-full text-white bg-slate-900 px-6 py-4 rounded-lg border-none font-ubuntu ${formik.touched.mobile && formik.errors.mobile ? 'border-red-500' : ''}`}
-              {...formik.getFieldProps('mobile')}
-            />
-            {formik.touched.mobile && formik.errors.mobile ? <div className="text-red-500">{formik.errors.mobile}</div> : null}
           </div>
-
-          <textarea 
-            className={`w-full text-white bg-slate-900 px-6 py-4 rounded-lg border-none font-ubuntu ${formik.touched.message && formik.errors.message ? 'border-red-500' : ''}`} 
-            placeholder='Enter your message' 
-            rows='4' 
-            {...formik.getFieldProps('message')}
-          ></textarea>
-          {formik.touched.message && formik.errors.message ? <div className="text-red-500">{formik.errors.message}</div> : null}
-
-          <button type="submit" className='bg-yellow-500 hover:bg-white px-6 py-4 w-full rounded-md font-semibold text-md font-ubuntu'>Submit Now</button>
+          <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
+            Reset Password
+          </button>
         </form>
+        {message && <p>{message}</p>}
       </div>
-    </section>
+    </div>
   );
 };
 
-export default Contact;
+export default ResetPassword;
