@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -56,7 +56,7 @@ const SignUp = () => {
                 name="name"
                 id="name"
                 placeholder="Your Name"
-                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
+                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 text-black dark:text-gray-800"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -70,7 +70,7 @@ const SignUp = () => {
                 name="email"
                 id="email"
                 placeholder="leroy@jenkins.com"
-                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
+                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 text-black dark:bg-gray-50 dark:text-gray-800"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -84,7 +84,7 @@ const SignUp = () => {
                 name="password"
                 id="password"
                 placeholder="***"
-                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
+                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 text-black dark:bg-gray-50 dark:text-gray-800"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -101,9 +101,9 @@ const SignUp = () => {
             </div>
             <p className="px-6 text-sm text-center text-white">
               Already have an account?
-              <a href="/login" className="hover:underline text-white">
+              <Link to="/login" className="hover:underline text-white">
                 Log in
-              </a>
+              </Link>
               .
             </p>
           </div>
