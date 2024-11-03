@@ -13,11 +13,14 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://donation-site-three.vercel.app/api/register", {
-        name,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "http://donation-site-three.vercel.app/api/register",
+        {
+          name,
+          email,
+          password,
+        }
+      );
 
       if (res.data && res.data.email) {
         toast.success(`User ${res.data.email} is successfully registered`);
@@ -33,13 +36,13 @@ const SignUp = () => {
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen bg-cover bg-center mb-20 mt-28 ml-2 xl:mx-8 rounded bg-transparent "
+      className="flex items-center justify-center min-h-screen bg-cover bg-center mb-20 mt-28 ml-2 xl:mx-8 rounded bg-transparent  "
       style={{
         backgroundImage:
           "url('https://i.redd.it/islamia-college-peshawar-pakistan-v0-zyy8lfo8zcx91.jpg?width=1080&format=pjpg&auto=webp&s=e20bb64198f994ee95777c183716ecca191af150')",
       }}
     >
-      <div className="flex flex-col max-w-md p-6 mt-8 mb-48 ml-[1px] rounded-md sm:p-10 opacity-100 bg-black text-white">
+      <div className="flex flex-col max-w-md p-6 mt-8 mb-48 ml-[1px] rounded-md sm:p-10 opacity-100 bg-black text-white w-full ">
         <div className="mb-8 text-center text-white">
           <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
           <p className="text-sm text-white">Create a new account</p>
